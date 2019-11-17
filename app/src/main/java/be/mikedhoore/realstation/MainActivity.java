@@ -31,6 +31,6 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         LatLng ehb = new LatLng(50.842395, 4.322808);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ehb));
-        mMap.setMinZoomPreference(5);
+        mMap.setMinZoomPreference(8);
     }
 }

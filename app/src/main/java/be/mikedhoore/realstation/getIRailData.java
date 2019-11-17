@@ -4,6 +4,7 @@ https://www.youtube.com/watch?v=Vcn4OuV4Ixg
 package be.mikedhoore.realstation;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -41,15 +42,23 @@ public class getIRailData extends AsyncTask<Void,Void,Void> {
                 line = bufferedReader.readLine();
                 data = data + line;
             }
-            //Turn the data into an JSONArray
-            JSONArray jsonArray = new JSONArray(data);
+            //Turn the data into an JSONObject
+            JSONObject jsonObject = new JSONObject(data);
+            //Select DB
             db = MainActivity.db;
+            //Get correct array in JSON
+            JSONArray stationsArray = jsonObject.getJSONArray("station");
             //Temp only 20 stations for testing
-            for (int i = 0 ; i<jsonArray.length(); i++){
-                JSONObject jsonObject = (JSONObject) jsonArray.get(i);
+            for (int i = 0 ; i</*stationsArray.length()*/20; i++){
+                JSONObject jsonObject2 = (JSONObject) stationsArray.get(i);
                 //Here code to put object to db
-                Station station = new Station(jsonObject.getDouble("locationX"),jsonObject.getDouble("locationY"),jsonObject.getString("nmbsid"),jsonObject.getString("name"));
-                db.addData(station);
+                Station station = new Station(jsonObject2.getDouble("locationX"),jsonObject2.getDouble("locationY"),jsonObject2.getString("id"),jsonObject2.getString("name"));
+                boolean added = db.addData(station);
+                if (added == false){
+                    Log.d("ADDED", "Station toegevoegd");
+                } else {
+                    Log.d("FAULT", "Station niet toegevoegd" + station.name);
+                }
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

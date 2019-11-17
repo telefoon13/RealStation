@@ -52,7 +52,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL3, station.locationY);
         contentValues.put(COL4, station.nmbsId);
         contentValues.put(COL5, station.name);
-        long result = db.insert(DATABASE_NAME, null , contentValues);
+        long result = db.insert(TABLE_NAME, null , contentValues);
         if (result == -1){
             return false;
         } else {
