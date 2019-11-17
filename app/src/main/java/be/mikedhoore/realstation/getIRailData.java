@@ -26,7 +26,6 @@ import java.util.List;
 public class getIRailData extends AsyncTask<Void,Void,Void> {
 
     String data ="";
-    DataBaseHelper db;
 
     @Override
     protected Void doInBackground(Void... voids) {
@@ -45,20 +44,15 @@ public class getIRailData extends AsyncTask<Void,Void,Void> {
             //Turn the data into an JSONObject
             JSONObject jsonObject = new JSONObject(data);
             //Select DB
-            db = MainActivity.db;
+            DataBaseHelper db = MainActivity.db;
             //Get correct array in JSON
             JSONArray stationsArray = jsonObject.getJSONArray("station");
             //Temp only 20 stations for testing
-            for (int i = 0 ; i</*stationsArray.length()*/20; i++){
+            for (int i = 0 ; i<1; i++){
                 JSONObject jsonObject2 = (JSONObject) stationsArray.get(i);
                 //Here code to put object to db
                 Station station = new Station(jsonObject2.getDouble("locationX"),jsonObject2.getDouble("locationY"),jsonObject2.getString("id"),jsonObject2.getString("name"));
-                boolean added = db.addData(station);
-                if (added == false){
-                    Log.d("ADDED", "Station toegevoegd");
-                } else {
-                    Log.d("FAULT", "Station niet toegevoegd" + station.name);
-                }
+                db.addData(station);
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -73,14 +67,15 @@ public class getIRailData extends AsyncTask<Void,Void,Void> {
     @Override
     protected void onPostExecute(Void aVoid) {
         super.onPostExecute(aVoid);
-        db = MainActivity.db;
+        DataBaseHelper db = MainActivity.db;
         //Get the list of stations out of the DB
-        List<Station> stations = new ArrayList<>();
+        List<Station> stations;
         stations = db.getListContents();
         //ForEvery entry in the list make a marker and add to map
         for (Station station : stations) {
             LatLng stationPin = new LatLng(station.locationX, station.locationY);
             MainActivity.mMap.addMarker(new MarkerOptions().position(stationPin).title(station.name));
+            Log.d("PIN", "Pin added / " + station.locationX);
         }
 
     }

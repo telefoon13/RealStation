@@ -9,6 +9,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -54,8 +56,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL5, station.name);
         long result = db.insert(TABLE_NAME, null , contentValues);
         if (result == -1){
+            Log.d("FAULT", "Station niet toegevoegd" + contentValues);
             return false;
         } else {
+            Log.d("OK", "Toegevoegd / " + station.name);
             return true;
         }
     }
@@ -75,7 +79,24 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         int iCOL4 = data.getColumnIndex(COL4);
         int iCOL5 = data.getColumnIndex(COL5);
         //For every entry found in the DB
-        for (data.moveToFirst(); !data.isAfterLast(); data.moveToNext()){
+        try{
+            while (data.moveToNext()){
+//Get the values
+                int id = data.getInt(iCOL1);
+                Double locationX = data.getDouble(iCOL2);
+                Double locationY = data.getDouble(iCOL3);
+                String nmbsId = data.getString(iCOL4);
+                String name = data.getString(iCOL5);
+                //Add to the List to return
+                Station station = new Station(id, locationX, locationY, nmbsId, name);
+                stationList.add(station);
+                Log.d("Added to list", station.id + " / " + station.name);
+            }
+        } finally {
+            data.close();
+        }
+
+        /*for (data.moveToFirst(); !data.isAfterLast(); data.moveToNext()){
             //Get the values
             int id = data.getInt(iCOL1);
             Double locationX = data.getDouble(iCOL2);
@@ -83,13 +104,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             String nmbsId = data.getString(iCOL4);
             String name = data.getString(iCOL5);
             //Add to the List to return
-            stationList.add(new Station(id, locationX, locationY, nmbsId, name));
-        }
-        /* test data
-        stationList.add(new Station(1, 50.842395, 4.322808, "test1", "name1"));
-        stationList.add(new Station(2, 50.742395, 4.422808, "test2", "name2"));
-        stationList.add(new Station(3, 50.642395, 4.522808, "test3", "name3"));
-         */
+            Station station = new Station(id, locationX, locationY, nmbsId, name);
+            stationList.add(station);
+            Log.d("Added to list", station.id + " / " + station.name);
+        }*/
         //Return the list
         return stationList;
     }
