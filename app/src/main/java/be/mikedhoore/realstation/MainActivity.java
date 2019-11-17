@@ -1,24 +1,18 @@
 package be.mikedhoore.realstation;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
-
 import android.os.Bundle;
-import android.widget.TextView;
-
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 
 public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
 
-    private GoogleMap mMap;
-    public static TextView data;
+    public static GoogleMap mMap;
+    public static DataBaseHelper db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +21,7 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
-        data = (TextView) findViewById(R.id.textView);
+        db = new DataBaseHelper(this);
         getIRailData process = new getIRailData();
         process.execute();
     }
@@ -35,11 +29,8 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-
         LatLng ehb = new LatLng(50.842395, 4.322808);
-        //mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ehb));
-        mMap.setMinZoomPreference(11);
+        mMap.setMinZoomPreference(5);
     }
 }
