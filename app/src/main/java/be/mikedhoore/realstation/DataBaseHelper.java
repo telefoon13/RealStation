@@ -14,6 +14,8 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import be.mikedhoore.realstation.Models.Station;
+
 public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "RealStation.db";
     public static final String TABLE_NAME = "Stations";
@@ -47,19 +49,25 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
     }
 
+    public void deleteAll()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME,null,null);
+    }
+
     public boolean addData(Station station){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
-        contentValues.put(COL2, station.locationX);
-        contentValues.put(COL3, station.locationY);
-        contentValues.put(COL4, station.nmbsId);
-        contentValues.put(COL5, station.name);
+        contentValues.put(COL2, station.getLocationX());
+        contentValues.put(COL3, station.getLocationY());
+        contentValues.put(COL4, station.getNmbsId());
+        contentValues.put(COL5, station.getName());
         long result = db.insert(TABLE_NAME, null , contentValues);
         if (result == -1){
             Log.d("FAULT", "Station niet toegevoegd" + contentValues);
             return false;
         } else {
-            Log.d("OK", "Toegevoegd / " + station.name);
+            Log.d("OK", "Toegevoegd / " + station.getName());
             return true;
         }
     }
@@ -90,7 +98,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 //Add to the List to return
                 Station station = new Station(id, locationX, locationY, nmbsId, name);
                 stationList.add(station);
-                Log.d("Added to list", station.id + " / " + station.name);
+                Log.d("Added to list", station.getId() + " / " + station.getName());
             }
         } finally {
             data.close();

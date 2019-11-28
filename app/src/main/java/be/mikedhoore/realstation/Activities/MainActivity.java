@@ -34,6 +34,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.mapView);
         mapFragment.getMapAsync(this);
         db = new DataBaseHelper(this);
+        //Clear the DB first
+        db.deleteAll();
+        //Get all the stations from iRail
         getIRailData process = new getIRailData();
         process.execute();
     }
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         mMap.setMinZoomPreference(7);
     }
 
+    //Menu used resource : https://www.youtube.com/watch?v=h47CqbmhdAs
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();

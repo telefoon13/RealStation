@@ -1,4 +1,4 @@
-package be.mikedhoore.realstation;
+package be.mikedhoore.realstation.Models;
 
 public class Station {
 
@@ -21,5 +21,25 @@ public class Station {
         this.locationY = locationY;
         this.nmbsId = nmbsId;
         this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public double getLocationX() {
+        return locationX;
+    }
+
+    public double getLocationY() {
+        return locationY;
+    }
+
+    public String getNmbsId() {
+        return nmbsId;
+    }
+
+    public String getName() {
+        return name;
     }
 }
