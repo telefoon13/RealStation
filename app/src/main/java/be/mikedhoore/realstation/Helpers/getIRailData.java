@@ -1,7 +1,7 @@
 /* used resource
 https://www.youtube.com/watch?v=Vcn4OuV4Ixg
  */
-package be.mikedhoore.realstation;
+package be.mikedhoore.realstation.Helpers;
 
 import android.os.AsyncTask;
 import android.util.Log;
@@ -75,6 +75,9 @@ public class getIRailData extends AsyncTask<Void,Void,Void> {
         stations = db.getListContents();
         //ForEvery entry in the list make a marker and add to map
         for (Station station : stations) {
+
+            // Marker clickable : https://stackoverflow.com/questions/14226453/google-maps-api-v2-how-to-make-markers-clickable
+
             LatLng stationPin = new LatLng(station.getLocationX(), station.getLocationY());
             MainActivity.mMap.addMarker(new MarkerOptions().position(stationPin).title(station.getName()));
             Log.d("PIN", "Pin added / " + station.getLocationX());

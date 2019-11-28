@@ -16,9 +16,9 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
-import be.mikedhoore.realstation.DataBaseHelper;
+import be.mikedhoore.realstation.Helpers.DataBaseHelper;
 import be.mikedhoore.realstation.R;
-import be.mikedhoore.realstation.getIRailData;
+import be.mikedhoore.realstation.Helpers.getIRailData;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {

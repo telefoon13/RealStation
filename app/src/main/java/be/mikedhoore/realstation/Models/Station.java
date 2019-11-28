@@ -1,12 +1,14 @@
 package be.mikedhoore.realstation.Models;
 
-public class Station {
+import java.io.Serializable;
 
-    int id;
-    double locationX;
-    double locationY;
-    String nmbsId;
-    String name;
+public class Station implements Serializable {
+
+    private int id;
+    private double locationX;
+    private double locationY;
+    private String nmbsId;
+    private String name;
 
     public Station(double locationX, double locationY, String nmbsId, String name) {
         this.locationX = locationX;

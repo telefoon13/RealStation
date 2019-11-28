@@ -2,7 +2,10 @@ package be.mikedhoore.realstation.Activities;
 
 
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,15 +14,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import be.mikedhoore.realstation.DataBaseHelper;
-import be.mikedhoore.realstation.ListAdapter;
+import be.mikedhoore.realstation.Helpers.DataBaseHelper;
+import be.mikedhoore.realstation.Adapters.ListAdapter;
 import be.mikedhoore.realstation.R;
 import be.mikedhoore.realstation.Models.Station;
 
 public class SearchActivity extends AppCompatActivity {
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter adpter;
+    private ListAdapter adpter;
     private RecyclerView.LayoutManager layoutManager;
     private ArrayList<Station> stationArrayList;
 
@@ -48,5 +51,14 @@ public class SearchActivity extends AppCompatActivity {
         adpter = new ListAdapter(stationArrayList);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(adpter);
+        adpter.setOnItemClickListener(new ListAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                Station station = stationArrayList.get(position);
+                Intent intent = new Intent(SearchActivity.this, StationActivity.class);
+                intent.putExtra("station", station);
+                startActivity(intent);
+            }
+        });
     }
 }

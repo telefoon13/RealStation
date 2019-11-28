@@ -1,7 +1,7 @@
 /*
 Used resource : https://www.youtube.com/watch?v=SK98ayjhk1E
 * */
-package be.mikedhoore.realstation;
+package be.mikedhoore.realstation.Helpers;
 
 
 import android.content.ContentValues;
