@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Activities.SearchActivity">
+    tools:context="be.mikedhoore.realstation.Activities.SearchActivity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recylerView"
+        android:id="@+id/recylerViewa"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="1dp"

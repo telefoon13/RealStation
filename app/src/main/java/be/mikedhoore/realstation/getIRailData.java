@@ -50,7 +50,7 @@ public class getIRailData extends AsyncTask<Void,Void,Void> {
             //Get correct array in JSON
             JSONArray stationsArray = jsonObject.getJSONArray("station");
             //Temp only 20 stations for testing
-            for (int i = 0 ; i<10; i++){
+            for (int i = 0 ; i<30; i++){
                 JSONObject jsonObject2 = (JSONObject) stationsArray.get(i);
                 //Here code to put object to db
                 Station station = new Station(jsonObject2.getDouble("locationX"),jsonObject2.getDouble("locationY"),jsonObject2.getString("id"),jsonObject2.getString("name"));
