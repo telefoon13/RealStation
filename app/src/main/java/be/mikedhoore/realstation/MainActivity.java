@@ -1,7 +1,13 @@
 package be.mikedhoore.realstation;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
+
+import android.app.AppComponentFactory;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -9,7 +15,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 
 
-public class MainActivity extends FragmentActivity implements OnMapReadyCallback {
+public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     public static GoogleMap mMap;
     public static DataBaseHelper db;
@@ -27,10 +33,17 @@ public class MainActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng ehb = new LatLng(50.842395, 4.322808);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(ehb));
-        mMap.setMinZoomPreference(5);
+        mMap.setMinZoomPreference(7);
     }
 }
