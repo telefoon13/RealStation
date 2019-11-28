@@ -1,10 +1,12 @@
 package be.mikedhoore.realstation.Activities;
 
+
+
+import android.os.Bundle;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.os.Bundle;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +36,7 @@ public class SearchActivity extends AppCompatActivity {
 
 
 
-        mRecyclerView.findViewById(R.id.recylerViewa);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recylerViewa);
         mRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
         adpter = new ListAdapter(arrayList);
