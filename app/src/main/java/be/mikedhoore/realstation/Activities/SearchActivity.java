@@ -21,27 +21,32 @@ public class SearchActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter adpter;
     private RecyclerView.LayoutManager layoutManager;
+    private ArrayList<Station> stationArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
 
+        buildList();
+        buildRecyclerView();
+
+    }
+
+    public void buildList(){
         DataBaseHelper db = MainActivity.db;
-        //ArrayList<Station> listOfStations = new ArrayList<>();
         //Get the list of stations out of the DB
         List<Station> stations;
         stations = db.getListContents();
-        ArrayList<Station> arrayList = new ArrayList<Station>(stations);
+        stationArrayList = new ArrayList<>(stations);
+    }
 
-
-
+    public void buildRecyclerView(){
         mRecyclerView = (RecyclerView) findViewById(R.id.recylerViewa);
         mRecyclerView.setHasFixedSize(true);
         layoutManager = new LinearLayoutManager(this);
-        adpter = new ListAdapter(arrayList);
+        adpter = new ListAdapter(stationArrayList);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setAdapter(adpter);
-
     }
 }

@@ -1,3 +1,9 @@
+/*
+Sources used :
+https://developer.android.com/guide/topics/ui/layout/recyclerview
+https://codinginflow.com/tutorials/android/recyclerview-cardview/part-1-layouts-model-class
+ */
+
 package be.mikedhoore.realstation;
 
 import android.view.LayoutInflater;
