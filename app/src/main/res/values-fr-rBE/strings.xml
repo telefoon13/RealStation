@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">RealStation</string>
+    <string name="title_home">Carte</string>
+    <string name="title_search">Recherche</string>
+    <string name="title_plan">à planifier</string>
+    <string name="title_info">Info</string>
+</resources>
