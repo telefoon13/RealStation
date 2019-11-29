@@ -6,4 +6,7 @@
     <string name="title_info">Info</string>
     <string name="alreadyHere">Vous êtes déjà sur cette page.</string>
     <string name="SearchHint">Nom de station</string>
+    <string name="functionToCome">Cette fonction viendra dans le futur</string>
+    <string name="track">SUIVRE</string>
+    <string name="depart">Partir : </string>
 </resources>
