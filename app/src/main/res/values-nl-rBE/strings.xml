@@ -5,4 +5,5 @@
     <string name="title_plan">Plannen</string>
     <string name="title_info">Info</string>
     <string name="alreadyHere">U bent al op deze pagina.</string>
+    <string name="SearchHint">Naam van station</string>
 </resources>

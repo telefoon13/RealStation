@@ -18,7 +18,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import be.mikedhoore.realstation.Helpers.DataBaseHelper;
 import be.mikedhoore.realstation.R;
-import be.mikedhoore.realstation.Helpers.getIRailData;
+import be.mikedhoore.realstation.Helpers.iRail.be.iRailStations;
 
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Clear the DB first
         db.deleteAll();
         //Get all the stations from iRail
-        getIRailData process = new getIRailData();
+        iRailStations process = new iRailStations();
         process.execute();
     }
 

@@ -76,4 +76,10 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
             });
         }
     }
+
+    //https://www.youtube.com/watch?v=OWwOSLfWboY
+    public void filterdList(ArrayList<Station> stations){
+        arrayListOfStations = stations;
+        notifyDataSetChanged();
+    }
 }

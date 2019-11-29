@@ -5,6 +5,9 @@ package be.mikedhoore.realstation.Activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +37,36 @@ public class SearchActivity extends AppCompatActivity {
         buildList();
         buildRecyclerView();
 
+        EditText editText = findViewById(R.id.search_bar);
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
+    }
+
+    //Source : https://www.youtube.com/watch?v=OWwOSLfWboY
+    private void filter(String text){
+        ArrayList<Station> filterdList = new ArrayList<>();
+        for (Station station : stationArrayList){
+            if (station.getName().toLowerCase().contains(text.toLowerCase())){
+                filterdList.add(station);
+            }
+        }
+
+        adpter.filterdList(filterdList);
     }
 
     public void buildList(){

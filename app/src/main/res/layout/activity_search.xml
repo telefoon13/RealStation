@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="be.mikedhoore.realstation.Activities.SearchActivity">
+
+    <EditText
+        android:id="@+id/search_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:hint="@string/SearchHint"
+        android:inputType="text"
+        android:visibility="visible" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerViewa"
@@ -12,5 +22,5 @@
         android:layout_height="match_parent"
         android:background="@android:color/darker_gray"
         android:padding="4dp"
-        android:scrollbars="vertical"/>
-</RelativeLayout>
+        android:scrollbars="vertical" />
+</LinearLayout>
