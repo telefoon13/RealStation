@@ -4,31 +4,31 @@ import java.io.Serializable;
 
 public class BoardItem implements Serializable {
 
-    private int delay;
-    private Station endStation;
-    private int time;
+    private String delay;
+    private String endStation;
+    private String time;
     private String vehicle;
-    private int track;
-    private int canceld;
+    private String track;
+    private String canceled;
 
-    public BoardItem(int delay, Station endStation, int time, String vehicle, int track, int canceld) {
+    public BoardItem(String delay, String endStation, String time, String vehicle, String track, String canceled) {
         this.delay = delay;
         this.endStation = endStation;
         this.time = time;
         this.vehicle = vehicle;
         this.track = track;
-        this.canceld = canceld;
+        this.canceled = canceled;
     }
 
-    public int getDelay() {
+    public String getDelay() {
         return delay;
     }
 
-    public Station getEndStation() {
+    public String getEndStation() {
         return endStation;
     }
 
-    public int getTime() {
+    public String getTime() {
         return time;
     }
 
@@ -36,11 +36,11 @@ public class BoardItem implements Serializable {
         return vehicle;
     }
 
-    public int getTrack() {
+    public String getTrack() {
         return track;
     }
 
-    public int getCanceld() {
-        return canceld;
+    public String getCanceled() {
+        return canceled;
     }
 }

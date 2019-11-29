@@ -64,10 +64,10 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL5, station.getName());
         long result = db.insert(TABLE_NAME, null , contentValues);
         if (result == -1){
-            Log.d("FAULT", "Station niet toegevoegd" + contentValues);
+            //Log.d("FAULT", "Station niet toegevoegd" + contentValues);
             return false;
         } else {
-            Log.d("OK", "Toegevoegd / " + station.getName());
+            //Log.d("OK", "Toegevoegd / " + station.getName());
             return true;
         }
     }
@@ -98,7 +98,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 //Add to the List to return
                 Station station = new Station(id, locationX, locationY, nmbsId, name);
                 stationList.add(station);
-                Log.d("Added to list", station.getId() + " / " + station.getName());
+                //Log.d("Added to list", station.getId() + " / " + station.getName());
             }
         } finally {
             data.close();

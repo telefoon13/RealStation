@@ -1,19 +1,17 @@
 package be.mikedhoore.realstation.Activities;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.List;
 
 import be.mikedhoore.realstation.Adapters.ListAdapter;
-import be.mikedhoore.realstation.Helpers.DataBaseHelper;
 import be.mikedhoore.realstation.Helpers.iRail.be.iRailLiveBoard;
-import be.mikedhoore.realstation.Helpers.iRail.be.iRailStations;
 import be.mikedhoore.realstation.Models.BoardItem;
 import be.mikedhoore.realstation.Models.Station;
 import be.mikedhoore.realstation.R;
@@ -42,5 +40,13 @@ public class StationActivity extends AppCompatActivity {
         //Do the http request and get the board filled
         iRailLiveBoard process = new iRailLiveBoard();
         process.execute(station);
+
+        boardItems = new ArrayList<>();
+        //stationName.setText(boardItems.get(1).getEndStation());
+        for (int i = 0 ; i<boardItems.size(); i++){
+            Log.d("TEST",boardItems.toString());
+        }
     }
+
+
 }
