@@ -1,9 +1,10 @@
 package be.mikedhoore.realstation.Activities;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,8 +12,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,31 +32,76 @@ import be.mikedhoore.realstation.R;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    private int MY_PERMISSIONS_REQUEST_FINE_LOCATION = 1;
     public static GoogleMap mMap;
     public static DataBaseHelper db;
+    private LatLng location = new LatLng(50.842395, 4.322808);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.mapView);
-        mapFragment.getMapAsync(this);
+
         db = new DataBaseHelper(this);
         //Clear the DB first
         db.deleteAll();
         //Get all the stations from iRail
         iRailStations process = new iRailStations();
         process.execute();
+
+        if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+            //Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+            GPSTracker gps = new GPSTracker((this));
+            location = new LatLng(gps.getLatitude(), gps.getLongitude());
+        } else {
+            requestPermission();
+        }
+
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mapView);
+        mapFragment.getMapAsync(this);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
+
+    private void requestPermission(){
+        if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
+            new AlertDialog.Builder(this)
+                    .setTitle(this.getResources().getString(R.string.text_location_permission))
+                    .setMessage(this.getResources().getString(R.string.text_location_permission))
+                    .setPositiveButton(this.getResources().getString(R.string.ok), new DialogInterface.OnClickListener(){
+                @Override
+                public void onClick(DialogInterface dialogInterface, int witch){
+                    ActivityCompat.requestPermissions(MainActivity.this, new  String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+                }
+            })
+                    .setNegativeButton(this.getResources().getString(R.string.nok), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    })
+            .create().show();
+        } else {
+            ActivityCompat.requestPermissions(this, new  String[]{Manifest.permission.ACCESS_FINE_LOCATION}, MY_PERMISSIONS_REQUEST_FINE_LOCATION);
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == MY_PERMISSIONS_REQUEST_FINE_LOCATION){
+            if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+                GPSTracker gps = new GPSTracker((this));
+                location = new LatLng(gps.getLatitude(), gps.getLongitude());
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+            } else {
+                Toast.makeText(this, "NOK", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-        LatLng ehb = new LatLng(50.842395, 4.322808);
-        GPSTracker gps = new GPSTracker((this));
-        LatLng location = new LatLng(gps.getLatitude(), gps.getLongitude());
         //Toast.makeText(this, location.toString(), Toast.LENGTH_SHORT).show();
         mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
         mMap.setMinZoomPreference(12);
@@ -81,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         return true;
     }
 
+    //Add menu
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
@@ -100,6 +147,5 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         return super.onOptionsItemSelected(item);
     }
-
 
 }

@@ -27,4 +27,8 @@
     </string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
+    <string name="title_location_permission">Locatie toestemming</string>
+    <string name="text_location_permission">We hebben uw locatie nodig om stations te tonen dicht bij u.</string>
+    <string name="ok">Geef toestemming</string>
+    <string name="nok">Weiger toestemming</string>
 </resources>
