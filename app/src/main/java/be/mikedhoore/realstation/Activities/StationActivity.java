@@ -65,7 +65,7 @@ public class StationActivity extends AppCompatActivity {
         //Set xml data
         stationName.setText(station.getName());
         nmbsId.setText(station.getNmbsId());
-        String loc = this.getString(R.string.altitude) + " : " + station.getLocationX() + "\n" + this.getString(R.string.latitude) + " : " + station.getLocationY();
+        String loc = this.getString(R.string.latitude) + " : " + station.getLocationX() + "\n" + this.getString(R.string.longitude) + " : " + station.getLocationY();
         location.setText(loc);
 
 

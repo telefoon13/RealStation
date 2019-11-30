@@ -1,6 +1,9 @@
 package be.mikedhoore.realstation.Activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -8,7 +11,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -18,6 +23,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
 import be.mikedhoore.realstation.Helpers.DataBaseHelper;
+import be.mikedhoore.realstation.Helpers.GPSTracker;
 import be.mikedhoore.realstation.Helpers.iRail.be.iRailStations;
 import be.mikedhoore.realstation.Models.Station;
 import be.mikedhoore.realstation.R;
@@ -43,12 +49,16 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         process.execute();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLng ehb = new LatLng(50.842395, 4.322808);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(ehb));
-        mMap.setMinZoomPreference(7);
+        GPSTracker gps = new GPSTracker((this));
+        LatLng location = new LatLng(gps.getLatitude(), gps.getLongitude());
+        //Toast.makeText(this, location.toString(), Toast.LENGTH_SHORT).show();
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        mMap.setMinZoomPreference(12);
 
         //Used source : https://stackoverflow.com/questions/47643568/google-marker-open-activity-when-marker-is-clicked
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
