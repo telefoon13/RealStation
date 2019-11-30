@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/stationName"
-        android:layout_width="250dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center"
@@ -33,7 +33,7 @@
 
     <TextView
         android:id="@+id/nmbsId"
-        android:layout_width="250dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:text="NMBSid"
         android:gravity="center"
@@ -45,7 +45,7 @@
 
     <TextView
         android:id="@+id/location"
-        android:layout_width="250dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="50dp"
         android:text="Location"
