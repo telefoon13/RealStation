@@ -7,6 +7,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.json.JSONArray;
@@ -80,7 +81,7 @@ public class iRailStations extends AsyncTask<Void,Void,Void> {
             // Marker clickable : https://stackoverflow.com/questions/14226453/google-maps-api-v2-how-to-make-markers-clickable
 
             LatLng stationPin = new LatLng(station.getLocationX(), station.getLocationY());
-            MainActivity.mMap.addMarker(new MarkerOptions().position(stationPin).title(station.getName()));
+            MainActivity.mMap.addMarker(new MarkerOptions().position(stationPin).title(station.getName())).setTag(station);
             //Log.d("PIN", "Pin added / " + station.getLocationX());
         }
     }
