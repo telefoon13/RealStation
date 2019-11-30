@@ -21,9 +21,12 @@ import be.mikedhoore.realstation.R;
 
 public class ListAdapter extends RecyclerView.Adapter<ListAdapter.ViewHolder> {
 
-    private ArrayList<Station> arrayListOfStations;
+    private static ArrayList<Station> arrayListOfStations;
     private OnItemClickListener onItemClickListener;
 
+    public static ArrayList<Station> getArrayListOfStations() {
+        return arrayListOfStations;
+    }
 
     public interface OnItemClickListener {
         void onItemClick(int position);

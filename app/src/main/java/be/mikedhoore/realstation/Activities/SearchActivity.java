@@ -85,7 +85,8 @@ public class SearchActivity extends AppCompatActivity {
         adpter.setOnItemClickListener(new ListAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Station station = stationArrayList.get(position);
+                Station station =ListAdapter.getArrayListOfStations().get(position);
+                //Station station = stationArrayList.get(position);
                 Intent intent = new Intent(SearchActivity.this, StationActivity.class);
                 intent.putExtra("station", station);
                 startActivity(intent);

@@ -2,6 +2,7 @@ package be.mikedhoore.realstation.Adapters;
 
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         String delay = "";
         if (Integer.parseInt(current.getDelay()) != 0) {
             delay = " + " + current.getDelay() + " min";
+            holder.vertrekTijd.setTextColor(Color.RED);
         }
         String placeholder = depart + " " + time.format(dateTime) + delay;
         holder.vertrekTijd.setText(placeholder);
