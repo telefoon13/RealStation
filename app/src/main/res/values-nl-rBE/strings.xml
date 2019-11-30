@@ -9,4 +9,5 @@
     <string name="functionToCome">Deze functie komt in de toekomst</string>
     <string name="track">SPOOR</string>
     <string name="depart">Vertrekt : </string>
+    <string name="noBoard">Geen live bord beschikbaar</string>
 </resources>

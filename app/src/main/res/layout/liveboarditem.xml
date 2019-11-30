@@ -15,7 +15,7 @@
             android:id="@+id/spoorStatic"
             android:layout_width="80dp"
             android:layout_height="30dp"
-            android:text="SUIVRE"
+            android:text="@string/track"
             android:textAlignment="center"
             android:textSize="20dp"
             android:textColor="@android:color/black"
@@ -27,7 +27,7 @@
             android:layout_width="80dp"
             android:layout_height="50dp"
             android:text="25"
-            android:textAlignment="center"
+            android:gravity="top|center"
             android:textSize="40dp"
             android:textStyle="bold"
             android:textColor="@android:color/black"
@@ -35,9 +35,9 @@
             app:layout_constraintTop_toBottomOf="@+id/spoorStatic" />
 
         <TextView
-            android:id="@+id/stationNaam"
+            android:id="@+id/eindStationNaam"
             android:layout_width="0dp"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:gravity="left|center"
             android:text="Brussel-Centraal"
             android:textSize="30dp"
@@ -56,6 +56,6 @@
             android:textColor="@android:color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/spoorDyna"
-            app:layout_constraintTop_toBottomOf="@+id/stationNaam" />
+            app:layout_constraintTop_toBottomOf="@+id/eindStationNaam" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

@@ -79,7 +79,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         //Open the DB
         SQLiteDatabase db = this.getWritableDatabase();
         //Do select statment om the table
-        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
+        Cursor data = db.rawQuery("SELECT * FROM " + TABLE_NAME + " ORDER BY " + COL5, null);
         //Get the ColumindexInts
         int iCOL1 = data.getColumnIndex(COL1);
         int iCOL2 = data.getColumnIndex(COL2);

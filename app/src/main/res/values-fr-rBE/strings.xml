@@ -9,4 +9,5 @@
     <string name="functionToCome">Cette fonction viendra dans le futur</string>
     <string name="track">SUIVRE</string>
     <string name="depart">Partir : </string>
+    <string name="noBoard">Pas de tableau disponible</string>
 </resources>
