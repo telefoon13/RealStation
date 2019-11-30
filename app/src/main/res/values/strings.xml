@@ -25,4 +25,6 @@
         \n\n
         <a href="https://mikedhoore.be">www.mikedhoore.be</a>
     </string>
+    <string name="latitude">Latitude</string>
+    <string name="altitude">Altitude</string>
 </resources>

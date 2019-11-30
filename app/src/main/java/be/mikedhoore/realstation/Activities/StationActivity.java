@@ -31,6 +31,8 @@ import be.mikedhoore.realstation.R;
 public class StationActivity extends AppCompatActivity {
 
     private TextView stationName;
+    private TextView nmbsId;
+    private TextView location;
     private Station station;
 
     private RecyclerView mRecyclerView;
@@ -55,11 +57,16 @@ public class StationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_station);
         //Get xml data
         stationName = findViewById(R.id.stationName);
+        nmbsId = findViewById(R.id.nmbsId);
+        location = findViewById(R.id.location);
         //Get the object out of the intent
         Intent intent = getIntent();
         station = (Station)intent.getSerializableExtra("station");
         //Set xml data
         stationName.setText(station.getName());
+        nmbsId.setText(station.getNmbsId());
+        String loc = this.getString(R.string.altitude) + " : " + station.getLocationX() + "\n" + this.getString(R.string.latitude) + " : " + station.getLocationY();
+        location.setText(loc);
 
 
         getLiveData();
