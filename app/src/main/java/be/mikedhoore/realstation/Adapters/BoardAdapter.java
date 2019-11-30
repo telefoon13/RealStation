@@ -46,7 +46,7 @@ public class BoardAdapter extends RecyclerView.Adapter<BoardAdapter.BoardViewHol
         SimpleDateFormat time = new SimpleDateFormat("HH:mm");
         String depart = context.getString(R.string.depart);
         String delay = "";
-        if (Integer.parseInt(current.getDelay()) != 0) {
+        if (Integer.parseInt(current.getDelay()) > 0) {
             delay = " + " + current.getDelay() + " min";
             holder.vertrekTijd.setTextColor(Color.RED);
         }

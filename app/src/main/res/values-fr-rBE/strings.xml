@@ -10,4 +10,19 @@
     <string name="track">SUIVRE</string>
     <string name="depart">Partir : </string>
     <string name="noBoard">Pas de tableau disponible</string>
+    <string name="MadeBy">
+        Cette application est faite par :
+        \n
+        D\'hoore Mike
+        \n\n
+        Fabriqué pour le compte de
+        \n
+        Erasmus Brussels
+        \n\n
+        Pour le cours
+        \n
+        Android devolopment
+        \n\n
+        <a href="https://mikedhoore.be">www.mikedhoore.be</a>
+    </string>
 </resources>

@@ -10,4 +10,19 @@
     <string name="track">TRACK</string>
     <string name="depart">Depart : </string>
     <string name="noBoard">No live board available</string>
+    <string name="MadeBy">
+        This application is made by :
+        \n
+        D\'hoore Mike
+        \n\n
+        Made on behalf of
+        \n
+        Erasmus Brussels
+        \n\n
+        For the course
+        \n
+        Android devolopment
+        \n\n
+        <a href="https://mikedhoore.be">www.mikedhoore.be</a>
+    </string>
 </resources>

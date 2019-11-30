@@ -10,4 +10,19 @@
     <string name="track">SPOOR</string>
     <string name="depart">Vertrekt : </string>
     <string name="noBoard">Geen live bord beschikbaar</string>
+    <string name="MadeBy">
+        Deze applicatie is gemaakt door :
+        \n
+        D\'hoore Mike
+        \n\n
+        In opdracht van
+        \n
+        Erasmus Brussel
+        \n\n
+        Voor het vak
+        \n
+        Android devolopment
+        \n\n
+        <a href="https://mikedhoore.be">www.mikedhoore.be</a>
+    </string>
 </resources>
