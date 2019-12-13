@@ -16,5 +16,12 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
         TextView tv = findViewById(R.id.textViewInfo);
         tv.setMovementMethod(LinkMovementMethod.getInstance());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 }

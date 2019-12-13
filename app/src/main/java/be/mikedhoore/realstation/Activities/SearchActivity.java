@@ -52,7 +52,14 @@ public class SearchActivity extends AppCompatActivity {
                 filter(s.toString());
             }
         });
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     //Source : https://www.youtube.com/watch?v=OWwOSLfWboY

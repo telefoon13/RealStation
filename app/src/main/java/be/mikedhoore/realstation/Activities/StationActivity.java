@@ -30,7 +30,6 @@ import be.mikedhoore.realstation.R;
 
 public class StationActivity extends AppCompatActivity {
 
-    private TextView stationName;
     private TextView nmbsId;
     private TextView location;
     private Station station;
@@ -56,14 +55,15 @@ public class StationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_station);
         //Get xml data
-        stationName = findViewById(R.id.stationName);
         nmbsId = findViewById(R.id.nmbsId);
         location = findViewById(R.id.location);
         //Get the object out of the intent
         Intent intent = getIntent();
         station = (Station)intent.getSerializableExtra("station");
         //Set xml data
-        stationName.setText(station.getName());
+        getSupportActionBar().setTitle(station.getName());
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //stationName.setText(station.getName());
         nmbsId.setText(station.getNmbsId());
         String loc = this.getString(R.string.latitude) + " : " + station.getLocationX() + "\n" + this.getString(R.string.longitude) + " : " + station.getLocationY();
         location.setText(loc);
@@ -81,6 +81,12 @@ public class StationActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, this.getResources().getString(R.string.noBoard), Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     private void getLiveData(){

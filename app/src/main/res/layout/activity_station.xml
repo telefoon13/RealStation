@@ -7,18 +7,6 @@
     android:orientation="vertical"
     tools:context="be.mikedhoore.realstation.Activities.StationActivity">
 
-    <TextView
-        android:id="@+id/stationName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/black"
-        android:textSize="40dp"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recylerViewBoard"
         android:layout_width="match_parent"
@@ -38,7 +26,7 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@+id/location"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/stationName" />
+        app:layout_constraintTop_toBottomOf="parent" />
 
     <TextView
         android:id="@+id/location"
