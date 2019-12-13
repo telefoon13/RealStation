@@ -16,12 +16,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
+
+import java.util.List;
 
 import be.mikedhoore.realstation.Helpers.DataBaseHelper;
 import be.mikedhoore.realstation.Helpers.GPSTracker;
@@ -46,8 +50,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //Clear the DB first
         db.deleteAll();
         //Get all the stations from iRail
-        iRailStations process = new iRailStations();
+        iRailStations process = new iRailStations(getString(R.string.lang));
         process.execute();
+
 
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED){
             //Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
@@ -62,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
 
+    //Used source : https://www.youtube.com/watch?v=SMrB97JuIoM
     private void requestPermission(){
         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)){
             new AlertDialog.Builder(this)
@@ -89,12 +95,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == MY_PERMISSIONS_REQUEST_FINE_LOCATION){
             if(grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
                 GPSTracker gps = new GPSTracker((this));
                 location = new LatLng(gps.getLatitude(), gps.getLongitude());
                 mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
             } else {
-                Toast.makeText(this, "NOK", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(this, "NOK", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -103,8 +109,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         //Toast.makeText(this, location.toString(), Toast.LENGTH_SHORT).show();
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
-        mMap.setMinZoomPreference(12);
+        //mMap.moveCamera(CameraUpdateFactory.newLatLng(location));
+        //mMap.setMinZoomPreference(7);
+        mMap.getUiSettings().setZoomControlsEnabled(true);
+        mMap.getUiSettings().setZoomGesturesEnabled(true);
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location,12.0f));
 
         //Used source : https://stackoverflow.com/questions/47643568/google-marker-open-activity-when-marker-is-clicked
         mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {

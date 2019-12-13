@@ -31,4 +31,5 @@
     <string name="text_location_permission">We need your location to show stations nearby.</string>
     <string name="ok">Give permission</string>
     <string name="nok">Deny permission</string>
+    <string name="lang">en</string>
 </resources>

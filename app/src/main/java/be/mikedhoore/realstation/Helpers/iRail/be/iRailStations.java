@@ -3,6 +3,7 @@ https://www.youtube.com/watch?v=Vcn4OuV4Ixg
  */
 package be.mikedhoore.realstation.Helpers.iRail.be;
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -26,16 +27,24 @@ import java.util.List;
 import be.mikedhoore.realstation.Activities.MainActivity;
 import be.mikedhoore.realstation.Helpers.DataBaseHelper;
 import be.mikedhoore.realstation.Models.Station;
+import be.mikedhoore.realstation.R;
 
 public class iRailStations extends AsyncTask<Void,Void,Void> {
 
     String data ="";
+    private String languageCode;
+
+    public iRailStations(String language)
+    {
+        languageCode = language;
+    }
 
     @Override
     protected Void doInBackground(Void... voids) {
         try {
             //Open the url and fetch the data
-            URL url = new URL("https://api.irail.be/stations/?format=json&lang=nl");
+            //Context context = MainActivity
+            URL url = new URL("https://api.irail.be/stations/?format=json&lang=" + languageCode/*+ getResources().getString(R.string.lang)*/);
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
@@ -79,11 +88,12 @@ public class iRailStations extends AsyncTask<Void,Void,Void> {
         for (Station station : stations) {
 
             // Marker clickable : https://stackoverflow.com/questions/14226453/google-maps-api-v2-how-to-make-markers-clickable
-
-            LatLng stationPin = new LatLng(station.getLocationX(), station.getLocationY());
+            LatLng stationPin = new LatLng(station.getLocationY(), station.getLocationX());
             MainActivity.mMap.addMarker(new MarkerOptions().position(stationPin).title(station.getName())).setTag(station);
             //Log.d("PIN", "Pin added / " + station.getLocationX());
         }
+        //MainActivity.mMap.notifyAll();
+
     }
 
 
